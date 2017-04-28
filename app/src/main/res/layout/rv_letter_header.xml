@@ -12,6 +12,7 @@
         android:gravity="center_vertical"
         android:paddingLeft="16dp"
         android:text="A"
+        android:visibility="visible"
         android:textColor="#FFF"
         android:textSize="16sp"/>
 

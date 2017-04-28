@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="recyclerview-binder-1.3.2">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/jp.satorufujiwara/recyclerview-binder/1.3.2/99194692f4cf2fbda28bed69ea12d440afd8392f/recyclerview-binder-1.3.2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/jp.satorufujiwara/recyclerview-binder/1.3.2/f25fe39af8a7fe2534009effa81306a19d344534/recyclerview-binder-1.3.2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

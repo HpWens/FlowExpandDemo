@@ -1,4 +1,4 @@
-package com.github.baserecycleradapter;
+package com.github.baserecycleradapter.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,16 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import com.github.baserecycleradapter.activity.AnimationActivity;
-import com.github.baserecycleradapter.activity.EmptyActivity;
-import com.github.baserecycleradapter.activity.FlowActivity;
-import com.github.baserecycleradapter.activity.HeaderAndFooterActivity;
-import com.github.baserecycleradapter.activity.MultiItemActivity;
-import com.github.baserecycleradapter.activity.NavigationActivity;
-import com.github.baserecycleradapter.activity.PullToRefreshActivity;
-import com.github.baserecycleradapter.activity.SelectActivity;
-import com.github.baserecycleradapter.activity.TanTanActivity;
-import com.github.baserecycleradapter.activity.TaoBaoActivity;
+import com.github.baserecycleradapter.R;
 import com.github.library.BaseQuickAdapter;
 import com.github.library.BaseViewHolder;
 

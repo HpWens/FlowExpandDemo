@@ -17,4 +17,9 @@
         android:text="北京"
         android:textSize="16sp"/>
 
+    <View
+        android:background="#f0f0f0"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"></View>
+
 </LinearLayout>

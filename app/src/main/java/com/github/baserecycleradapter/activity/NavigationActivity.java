@@ -1,22 +1,29 @@
 package com.github.baserecycleradapter.activity;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.github.baserecycleradapter.R;
-import com.github.baserecycleradapter.comparator.PinYinComparator;
 import com.github.baserecycleradapter.entity.City;
+import com.github.baserecycleradapter.entity.CityBean;
 import com.github.baserecycleradapter.utils.StringUtils;
 import com.github.library.BaseQuickAdapter;
 import com.github.library.BaseViewHolder;
 import com.github.library.widget.LetterNavigationView;
+import com.google.gson.Gson;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -29,12 +36,12 @@ public class NavigationActivity extends AppCompatActivity {
 
     private RecyclerView mRecyclerView;
     private LinearLayoutManager mLinearLayoutManager;
-    private BaseQuickAdapter<City,BaseViewHolder> mAdapter;
+    private BaseQuickAdapter<CityBean, BaseViewHolder> mAdapter;
 
     private TextView tvLetterHeader;
     private TextView tvCenter;
 
-    private List<City> mDatas;
+    private List<CityBean> mDatas = new ArrayList<>();
 
     private List<String> mLetterDatas;
 
@@ -63,15 +70,17 @@ public class NavigationActivity extends AppCompatActivity {
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(mLinearLayoutManager = new LinearLayoutManager(this));
 
-        mRecyclerView.setAdapter(mAdapter = new BaseQuickAdapter<City,BaseViewHolder>( R.layout.rv_item_city, mDatas) {
+        mRecyclerView.setAdapter(mAdapter = new BaseQuickAdapter<CityBean, BaseViewHolder>(R.layout.rv_item_city,
+                mDatas) {
             @Override
-            protected void convert(BaseViewHolder helper, final City item) {
+            protected void convert(BaseViewHolder helper, final CityBean item) {
 
-                if (helper.getAdapterPosition() == 0) {
+                if (helper.getAdapterPosition() - mAdapter.getHeaderLayoutCount() == 0) {
                     helper.setVisible(R.id.tv_letter_header, true);
                     helper.itemView.setTag(HEADER_FIRST_VIEW);
                 } else {
-                    if (item.firstPinYin.equals(mDatas.get(helper.getAdapterPosition() - 1).firstPinYin)) {
+                    if (item.firstPinYin.equals(mDatas.get(helper.getAdapterPosition() - 1 - mAdapter
+                            .getHeaderLayoutCount()).firstPinYin)) {
                         helper.setVisible(R.id.tv_letter_header, false);
                         helper.itemView.setTag(HEADER_NONE_VIEW);
                     } else {
@@ -80,35 +89,39 @@ public class NavigationActivity extends AppCompatActivity {
                     }
                 }
 
-                if (item.hideEnable) {
-                    helper.setVisible(R.id.tv_city, false);
-                } else {
-                    helper.setVisible(R.id.tv_city, true);
-                }
+//                if (item.hideEnable) {
+//                    helper.setVisible(R.id.tv_city, false);
+//                } else {
+//                    helper.setVisible(R.id.tv_city, true);
+//                }
 
                 helper.setText(R.id.tv_letter_header, item.firstPinYin);
-                helper.setText(R.id.tv_city, item.cityName);
+                helper.setText(R.id.tv_city, item.name);
 
                 helper.setOnClickListener(R.id.tv_city, new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Snackbar.make(view, "" + item.cityName, Snackbar.LENGTH_SHORT).show();
+                        //Snackbar.make(view, "" + item.cityName, Snackbar.LENGTH_SHORT).show();
                     }
                 });
 
-                helper.setOnClickListener(R.id.tv_letter_header, new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        for (City city : mDatas) {
-                            if (city.firstPinYin.equals(item.firstPinYin)) {
-                                city.hideEnable = !city.hideEnable;
-                            }
-                        }
-                        notifyDataSetChanged();
-                    }
-                });
+//                helper.setOnClickListener(R.id.tv_letter_header, new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View view) {
+//                        for (CityBean city : mDatas) {
+//                            if (city.firstPinYin.equals(item.firstPinYin)) {
+//                                city.hideEnable = !city.hideEnable;
+//                            }
+//                        }
+//                        //notifyDataSetChanged();
+//                    }
+//                });
+
+
             }
         });
+
+        addHeaderView();
 
         mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
@@ -116,6 +129,16 @@ public class NavigationActivity extends AppCompatActivity {
                 super.onScrolled(recyclerView, dx, dy);
                 View transView = recyclerView.findChildViewUnder(
                         tvLetterHeader.getMeasuredWidth(), tvLetterHeader.getMeasuredHeight() - 1);
+
+                RecyclerView.LayoutManager layoutManager = recyclerView.getLayoutManager();
+
+                if (layoutManager instanceof LinearLayoutManager) {
+                    if(((LinearLayoutManager) layoutManager).findFirstVisibleItemPosition()==(mAdapter.getHeaderLayoutCount()-1)){
+                        tvLetterHeader.setVisibility(View.GONE);
+                    }else {
+                        tvLetterHeader.setVisibility(View.VISIBLE);
+                    }
+                }
 
                 if (transView != null) {
                     TextView tvLetter = (TextView) transView.findViewById(R.id.tv_letter_header);
@@ -178,7 +201,7 @@ public class NavigationActivity extends AppCompatActivity {
                         break;
                     }
                 }
-                moveToPosition(selectPosition);
+                moveToPosition(selectPosition + mAdapter.getHeaderLayoutCount());
             }
 
         });
@@ -228,17 +251,58 @@ public class NavigationActivity extends AppCompatActivity {
      * get data
      */
     public void getDatas() {
-        mDatas = new ArrayList<>();
-        for (int i = 0; i < stringCitys.length; i++) {
-            mDatas.add(getCity(stringCitys[i]));
+
+        Gson gson = new Gson();
+
+        String s = new String(readAssets(this, "cities.json"));
+
+        try {
+            JSONObject jsonObject = new JSONObject(s);
+            JSONArray jsonArray = jsonObject.optJSONArray("data");
+            for (int i = 0; i < jsonArray.length(); i++) {
+                CityBean bean = gson.fromJson(jsonArray.optJSONObject(i).toString(), CityBean.class);
+
+                bean.firstPinYin = bean.pinyin.substring(0, 1);
+
+                mDatas.add(bean);
+            }
+
+            Collections.sort(mDatas, new CitySort());
+
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
 
-        Collections.sort(mDatas, new PinYinComparator());
+    }
+
+
+    /**
+     * 读取Assets文件
+     *
+     * @param fileName
+     * @return
+     */
+    public static byte[] readAssets(Context context, String fileName) {
+        if (fileName == null || fileName.length() <= 0) {
+            return null;
+        }
+        byte[] buffer = null;
+        try {
+            InputStream fin = context.getAssets().open(fileName);
+            int length = fin.available();
+            buffer = new byte[length];
+            fin.read(buffer);
+            fin.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            return buffer;
+        }
     }
 
     public List<String> getNavigationDatas() {
         List<String> datas = new ArrayList<>();
-        for (City city : mDatas) {
+        for (CityBean city : mDatas) {
             if (!datas.contains(city.firstPinYin)) {
                 datas.add(city.firstPinYin);
             }
@@ -258,4 +322,16 @@ public class NavigationActivity extends AppCompatActivity {
             "兴化", "姜堰", "泰兴", "靖江", "福州", "南平", "三明",
             "邻水", "上海", "深圳", "香港", "乐山", "文淑", "重庆"
     };
+
+    private void addHeaderView() {
+        View headerView = getLayoutInflater().inflate(R.layout.layout_header, null);
+        headerView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup
+                .LayoutParams.WRAP_CONTENT));
+        mAdapter.addHeaderView(headerView);
+        headerView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+            }
+        });
+    }
 }

@@ -2,8 +2,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             android:background="#c3c9ce">
+             android:layout_height="match_parent">
 
     <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
@@ -19,8 +18,11 @@
         layout="@layout/rv_letter_header"></include>
 
     <com.github.library.widget.LetterNavigationView
+        android:layout_marginTop="96dp"
+        android:layout_marginBottom="48dp"
+        android:background="#abc123"
         android:id="@+id/navigation"
-        android:layout_width="48dp"
+        android:layout_width="32dp"
         android:layout_height="match_parent"
         android:layout_gravity="end"/>
 
@@ -34,6 +36,6 @@
         android:text="A"
         android:textColor="#FFF"
         android:textSize="32sp"
-        android:visibility="gone"/>
+        android:visibility="visible"/>
 
 </FrameLayout>

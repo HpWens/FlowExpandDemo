@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="runtime-no-op-0.8.7">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.antfortune.freeline/runtime-no-op/0.8.7/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.antfortune.freeline/runtime-no-op/0.8.7/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.antfortune.freeline/runtime-no-op/0.8.7/e50a9020f0c173379de3400ebbceeb95ab2668dd/runtime-no-op-0.8.7-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.antfortune.freeline'
 
 android {
     compileSdkVersion 24
@@ -7,7 +8,7 @@ android {
     defaultConfig {
         applicationId "com.github.baserecycleradapter"
         minSdkVersion 14
-        targetSdkVersion 24
+        targetSdkVersion 22
         versionCode 1
         versionName "1.0"
     }
@@ -20,18 +21,20 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:24.2.1'
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:design:24.2.1'
     compile 'com.android.support:cardview-v7:24.2.1'
     compile 'com.android.support:recyclerview-v7:24.2.1'
-
     compile 'com.flyco.dialog:FlycoDialog_Lib:1.2.6@aar'
     compile 'com.nineoldandroids:library:2.4.0'
-
     compile project(':library')
+    //compile project(':binder')
     //compile 'com.github.baserecycleradapter:library:1.1.0'
-    compile 'com.github.promeg:tinypinyin:1.0.0' // ~80KB
+    compile 'com.github.promeg:tinypinyin:1.0.0'
+    // ~80KB
+    compile 'jp.satorufujiwara:recyclerview-binder:1.3.2'
+    compile 'com.google.code.gson:gson:2.2.4'
 }
