@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </android.support.v7.widget.RecyclerView>
+
+    <TextView
+        android:id="@+id/tv"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:gravity="center"
+        android:text="i love you"/>
+
+    <com.github.baserecycleradapter.FloatCompLayout
+        android:id="@+id/fcl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+    </com.github.baserecycleradapter.FloatCompLayout>
+
+
+    <com.github.baserecycleradapter.MakeComplaintsView
+        android:id="@+id/mcv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"/>
+
+    <LinearLayout
+        android:id="@+id/edit_layout"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_alignParentBottom="true"
+        android:background="#FAFAFA"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <com.github.baserecycleradapter.radius.RadiusEditText
+            android:id="@+id/ret_view"
+            android:layout_width="match_parent"
+            android:layout_height="32dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:gravity="center_vertical"
+            android:hint="来个神吐槽~（吐槽最多只能20个字哦）"
+            android:imeOptions="actionNext"
+            android:lines="1"
+            android:paddingLeft="12dp"
+            android:textColorHint="#BCBBBB"
+            android:textSize="12sp"
+            app:rv_backgroundColor="#FFF"
+            app:rv_radius="8dp"
+            app:rv_strokeColor="#d9d9d9"
+            app:rv_strokeWidth="1dp"/>
+
+    </LinearLayout>
+
+
+    <FrameLayout
+        android:id="@+id/fl"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+    </FrameLayout>
+
+    <Button
+        android:id="@+id/btn"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:gravity="center"
+        android:text="A"/>
+
+</RelativeLayout>

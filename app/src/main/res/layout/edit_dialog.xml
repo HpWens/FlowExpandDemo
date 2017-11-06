@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/rl_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/player_edit_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#FAFAFA"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingBottom="8dp"
+        android:paddingTop="8dp">
+
+        <com.github.baserecycleradapter.radius.RadiusEditText
+            android:id="@+id/player_edit_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:layout_weight="1"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:hint="你好啊"
+            android:imeOptions="actionNext"
+            android:inputType="text"
+            android:clickable="true"
+            android:enabled="true"
+            android:paddingBottom="8dp"
+            android:paddingLeft="12dp"
+            android:paddingRight="8dp"
+            android:paddingTop="8dp"
+            android:textColorHint="#BCBBBB"
+            android:textCursorDrawable="@null"
+            android:textSize="12sp"
+            app:rv_backgroundColor="#FFF"
+            app:rv_radius="6dp"
+            app:rv_strokeColor="#d9d9d9"
+            app:rv_strokeWidth="1dp"/>
+
+    </LinearLayout>
+
+</FrameLayout>

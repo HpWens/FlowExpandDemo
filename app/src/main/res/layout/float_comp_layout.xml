@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <com.github.baserecycleradapter.radius.RadiusLinearLayout
+        android:id="@+id/rv_close"
+        android:layout_width="38dp"
+        android:layout_height="38dp"
+        android:layout_above="@+id/rv_publish"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="12dp"
+        android:layout_marginRight="15dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:rv_backgroundColor="#aF000000"
+        app:rv_radiusHalfHeightEnable="true">
+
+        <ImageView
+            android:id="@+id/img_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:src="@mipmap/ic_comp_open"/>
+
+        <TextView
+            android:id="@+id/tv_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="关闭"
+            android:textColor="#FFF"
+            android:textSize="8sp"/>
+
+    </com.github.baserecycleradapter.radius.RadiusLinearLayout>
+
+
+    <com.github.baserecycleradapter.radius.RadiusLinearLayout
+        android:id="@+id/rv_publish"
+        android:layout_width="38dp"
+        android:layout_height="38dp"
+        android:layout_above="@+id/rv_comp"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="12dp"
+        android:layout_marginRight="15dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:rv_backgroundColor="#aF000000"
+        app:rv_radiusHalfHeightEnable="true">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:src="@mipmap/ic_comp_publish"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="发表"
+            android:textColor="#FFF"
+            android:textSize="8sp"/>
+
+    </com.github.baserecycleradapter.radius.RadiusLinearLayout>
+
+
+    <TextView
+        android:id="@+id/rv_comp"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:layout_marginBottom="12dp"
+        android:background="@mipmap/ic_comp_float_expand_bg"
+        android:gravity="center"
+        android:text="999+\n吐槽"
+        android:textColor="#FFF"
+        android:textSize="10sp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignLeft="@+id/rv_publish"
+        android:layout_alignStart="@+id/rv_publish"/>
+
+
+    <com.github.baserecycleradapter.radius.RadiusTextView
+        android:id="@+id/rv_sign"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="6dp"
+        android:layout_marginRight="6dp"
+        android:gravity="center"
+        android:text="关"
+        android:textColor="#FFF"
+        android:textSize="8sp"
+        android:visibility="gone"
+        app:rv_backgroundColor="#3F000000"
+        app:rv_radiusHalfHeightEnable="true"/>
+
+</RelativeLayout>

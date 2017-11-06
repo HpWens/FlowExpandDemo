@@ -65,6 +65,10 @@ public class LetterNavigationView extends View {
         super.onSizeChanged(w, h, oldw, oldh);
         mWidth = w;
         mHeight = h;
+        getItemHeight();
+    }
+
+    private void getItemHeight() {
         if (!mDatas.isEmpty()) {
             mTextHeight = (mHeight / mDatas.size());
         }
@@ -134,6 +138,8 @@ public class LetterNavigationView extends View {
      */
     public void setData(List<String> datas) {
         mDatas = datas;
+        getItemHeight();
+        postInvalidate();
     }
 
     public interface OnTouchListener {

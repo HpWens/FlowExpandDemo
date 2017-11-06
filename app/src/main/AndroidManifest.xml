@@ -12,8 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".flow.FlowLayoutActivity"
-            android:launchMode="singleTask">
+            android:name=".activity.UnderActivity"
+            android:configChanges="locale|keyboardHidden|navigation|orientation|screenSize|keyboard">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 

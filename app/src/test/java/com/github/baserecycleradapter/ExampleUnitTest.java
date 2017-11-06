@@ -10,25 +10,26 @@ public class ExampleUnitTest {
     public void addition_isCorrect() throws Exception {
         //assertEquals(4, 2 + 2); caption
 
-        String content = "\n\n\n\n\n\n\n11222222\n\n4545454545\n\n\n4546464545645464\n\n\n\n\n\n\n44645456";
 
-        StringBuilder sb = new StringBuilder();
-        int repeat = -1;
-        for (int i = 0; i < content.toCharArray().length; i++) {
-            char c = content.charAt(i);
-            if (c != 10) {
-                sb.append(c);
-            } else {
-                if (repeat == i - 1) {
-                    repeat = i;
-                    continue;
-                }
-                repeat = i;
-                sb.append(c);
-            }
-        }
-
-        System.out.println("" + sb.toString());
+//        String content = "\n\n\n\n\n\n\n11222222\n\n4545454545\n\n\n4546464545645464\n\n\n\n\n\n\n44645456";
+//
+//        StringBuilder sb = new StringBuilder();
+//        int repeat = -1;
+//        for (int i = 0; i < content.toCharArray().length; i++) {
+//            char c = content.charAt(i);
+//            if (c != 10) {
+//                sb.append(c);
+//            } else {
+//                if (repeat == i - 1) {
+//                    repeat = i;
+//                    continue;
+//                }
+//                repeat = i;
+//                sb.append(c);
+//            }
+//        }
+//
+//        System.out.println("" + sb.toString());
 
 //        while (true) {
 //

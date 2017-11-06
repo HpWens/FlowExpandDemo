@@ -4,7 +4,6 @@
                                     android:id="@+id/cv_item"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:layout_margin="8dp"
                                     android:foreground="?android:attr/selectableItemBackground"
                                     card_view:cardBackgroundColor="#04b2d1"
                                     card_view:cardCornerRadius="4dp"
